@@ -1,6 +1,6 @@
 # 2026 – Role-based chatbots for dialogic assessment
 
-Materials for a literature seminar in which student groups discussed two self-selected research papers with one of two custom chatbots – an **AI Tutor** (Socratic questioning) or an **AI Student** (a deliberately fallible peer the group had to teach and correct) – in a master's course on production systems modelling and optimisation (2026, 36 groups, 97 students).
+Materials for a literature seminar in which student groups discussed two self-selected research papers with one of two custom chatbots – an **AI Tutor** (Socratic questioning) or an **AI Student** (a deliberately fallible peer the group had to teach and correct) – in a master's course on production systems modelling and optimisation (2026, 36 groups, 96 consenting students).
 
 These materials accompany two papers presented at IEEE TALE 2026:
 
