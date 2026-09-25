@@ -4,7 +4,7 @@ Open materials from course implementations that use generative AI in teaching an
 
 | Year | Implementation | Papers |
 |---|---|---|
-| [2026](2026/) | Literature seminar with role-based chatbots (AI Tutor vs. AI Student) as dialogic assessment in a master's course on production systems modelling and optimisation; 36 groups, 97 students | IEEE TALE 2026 (two papers) |
+| [2026](2026/) | Literature seminar with role-based chatbots (AI Tutor vs. AI Student) as dialogic assessment in a master's course on production systems modelling and optimisation; 36 groups, 97 students | IEEE TALE 2026  |
 
 ## Data
 
