@@ -14,9 +14,7 @@ These materials accompany two papers presented at IEEE TALE 2026:
 | [`chatbots/`](chatbots/) | System instructions and knowledge files (incl. role-specific rubrics and scoring guides) for both custom GPTs, and a description of the configuration |
 | [`instruments/`](instruments/) | Pre- and post-seminar questionnaires with exact item wording, and the pre–post item mapping |
 | [`qualitative/`](qualitative/) | Codebook for the open-ended reflections, with theme counts by chatbot role (paper 1) |
-| [`evaluation/`](evaluation/) | Prompt given to the post-seminar language models that graded the interaction logs (paper 2) |
-
-<!-- TODO: add evaluation/scoring-guide.pdf -->
+| [`evaluation/`](evaluation/) | Prompt and scoring guide given to the post-seminar language models that graded the interaction logs (paper 2) |
 
 ## Not included
 
