@@ -22,5 +22,5 @@ Student data (interaction logs, questionnaire responses, open-ended comments, sc
 
 ## How to cite
 
-Please cite the relevant paper(s) above and this repository (see `../CITATION.cff`; DOI: <!-- TODO: add Zenodo DOI after first release -->).
+Please cite the relevant paper(s) above and this repository (release v2026.1, DOI: [10.5281/zenodo.22964999](https://doi.org/10.5281/zenodo.22964999)).
 

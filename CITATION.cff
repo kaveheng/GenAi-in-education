@@ -2,7 +2,17 @@ cff-version: 1.2.0
 message: "If you use these materials, please cite them as below."
 title: "GenAI in education: open materials from course implementations"
 type: dataset
-version: "1.0.0"
+version: "v2026.1"
+doi: 10.5281/zenodo.22964999
+date-released: 2026-09-25
+repository-code: "https://github.com/kaveheng/GenAi-in-education"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22964998
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.22964999
+    description: "Version v2026.1"
 license: CC-BY-4.0
 authors:
   - family-names: Amouzgar

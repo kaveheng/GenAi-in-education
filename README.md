@@ -1,10 +1,12 @@
 # GenAI in education
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22964998.svg)](https://doi.org/10.5281/zenodo.22964998)
+
 Open materials from course implementations that use generative AI in teaching and assessment, organised by year. Each year folder is self-contained: it describes the implementation, contains the chatbot configurations, instruments and coding materials, and lists the papers it accompanies.
 
 | Year | Implementation | Papers |
 |---|---|---|
-| [2026](2026/) | Literature seminar with role-based chatbots (AI Tutor vs. AI Student) as dialogic assessment in a master's course on production systems modelling and optimisation; 36 groups, 97 students | IEEE TALE 2026  |
+| [2026](2026/) | Literature seminar with role-based chatbots (AI Tutor vs. AI Student) as dialogic assessment in a master's course on production systems modelling and optimisation; 36 groups, 97 students | IEEE TALE 2026 (two papers) |
 
 ## Data
 
@@ -12,7 +14,11 @@ Student data (interaction logs, questionnaire responses, open-ended comments, sc
 
 ## Citation and DOI
 
-The repository is archived on Zenodo; each release receives its own DOI, and the concept DOI always resolves to the latest release. See [`CITATION.cff`](CITATION.cff). <!-- TODO: add Zenodo concept DOI -->
+The repository is archived on Zenodo; each release receives its own DOI, and the concept DOI always resolves to the latest release. Concept DOI (all versions): [10.5281/zenodo.22964998](https://doi.org/10.5281/zenodo.22964998). See [`CITATION.cff`](CITATION.cff).
+
+| Release | Contents | DOI |
+|---|---|---|
+| v2026.1 | 2026 implementation | [10.5281/zenodo.22964999](https://doi.org/10.5281/zenodo.22964999) |
 
 ## License
 
