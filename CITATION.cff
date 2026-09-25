@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use these materials, please cite them as below."
+title: "GenAI in education: open materials from course implementations"
+type: dataset
+version: "1.0.0"
+license: CC-BY-4.0
+authors:
+  - family-names: Amouzgar
+    given-names: Kaveh
+    orcid: "https://orcid.org/0000-0001-7534-0382"
+    affiliation: "Uppsala University"
+  - family-names: Mirmotahari
+    given-names: Omid
+    orcid: "https://orcid.org/0009-0003-2821-1088"
+    affiliation: "University of Oslo"
+keywords:
+  - generative AI
+  - authentic assessment
+  - dialogic assessment
+  - conversational agents
+  - learning by teaching
+  - engineering education

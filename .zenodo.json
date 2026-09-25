@@ -1,0 +1,26 @@
+{
+  "title": "GenAI in education: open materials from course implementations",
+  "upload_type": "other",
+  "description": "Open materials from course implementations using generative AI in teaching and assessment, organised by year. 2026: system instructions, knowledge files with role-specific rubrics, pre- and post-seminar questionnaires, and qualitative codebook for a literature seminar in which student groups discussed self-selected research papers with an AI Tutor or an AI Student custom GPT (accompanies two papers at IEEE TALE 2026). No student data are included.",
+  "creators": [
+    {
+      "name": "Amouzgar, Kaveh",
+      "affiliation": "Uppsala University",
+      "orcid": "0000-0001-7534-0382"
+    },
+    {
+      "name": "Mirmotahari, Omid",
+      "affiliation": "University of Oslo",
+      "orcid": "0009-0003-2821-1088"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "keywords": [
+    "generative AI",
+    "authentic assessment",
+    "dialogic assessment",
+    "conversational agents",
+    "learning by teaching",
+    "engineering education"
+  ]
+}
