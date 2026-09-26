@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive Fig. 1 – Grade-band assignment by evaluator (IEEE TALE 2026)</title>
+<style>
+:root{--ink:#1d1f24;--muted:#5d6370;--rule:#d9dce2;--paper:#fbfaf7;--card:#ffffff;
+--u:#c62828;--g3:#ef8a17;--g4:#2e8b57;--g5:#1f4e9c;--hl:#1d1f24}
+@media (prefers-color-scheme:dark){:root{--ink:#e9eaee;--muted:#a2a8b4;--rule:#3a3e47;--paper:#16181c;--card:#1e2126}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+main{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+header .kicker{font:600 11px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(22px,3vw,30px);line-height:1.2;margin:.35em 0 .3em;font-weight:600}
+.cite{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:78ch}
+.cite em{color:var(--ink)}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:16px 16px 12px}
+.controls{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-bottom:12px;font:13px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif}
+.controls label{color:var(--muted)}
+.controls select,.controls input{font:inherit;margin-left:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font:12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--muted);margin-bottom:12px}
+.sw{display:inline-block;width:13px;height:13px;border-radius:2px;vertical-align:-2px;margin-right:5px}
+.scroll{overflow-x:auto;padding-bottom:4px}
+table.hm{border-collapse:separate;border-spacing:2px;font:11px/1 system-ui,-apple-system,"Segoe UI",sans-serif}
+table.hm th.rh{position:sticky;left:0;background:var(--card);text-align:right;font-weight:600;padding-right:10px;white-space:nowrap;color:var(--ink);z-index:1}
+table.hm th.rh small{display:block;font-weight:400;color:var(--muted);margin-top:2px}
+table.hm td{width:24px;min-width:24px;height:26px;text-align:center;color:#fff;border-radius:3px;cursor:default;font-variant-numeric:tabular-nums}
+table.hm td.role{background:transparent;color:var(--muted);height:16px;font-weight:600}
+table.hm td.boundary{box-shadow:inset 2px 0 0 var(--hl)}
+table.hm tr.human td{outline:1.5px solid var(--ink);outline-offset:-1px}
+table.hm td:hover{outline:2px solid var(--ink);outline-offset:0}
+.hide-num table.hm td:not(.role){color:transparent}
+#tip{position:fixed;pointer-events:none;background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;font:12px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.12);display:none;z-index:9;max-width:260px}
+h2{font-size:18px;margin:26px 0 8px;font-weight:600}
+table.dist{border-collapse:collapse;font:13px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;min-width:520px}
+table.dist th,table.dist td{padding:6px 10px;border-bottom:1px solid var(--rule);text-align:right}
+table.dist th:first-child,table.dist td:first-child{text-align:left}
+.bar{display:flex;height:12px;border-radius:2px;overflow:hidden;min-width:160px}
+.note{color:var(--muted);font-size:13.5px;max-width:82ch}
+footer{margin-top:28px;color:var(--muted);font-size:13px;border-top:1px solid var(--rule);padding-top:12px}
+a{color:inherit}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="kicker">Supplementary figure · IEEE TALE 2026</div>
+<h1>Grade-band assignment for all 36 groups, by evaluator</h1>
+<p class="cite">Interactive version of Fig. 1 in <em>“Can AI Grade Dialogic Assessment? Human Agreement, Score Severity, and Run-to-Run Reliability”</em> (K. Amouzgar, O. Mirmotahari, A. Lidfors Lindqvist, M. Urenda Moris). Each column is one student group, identified only by its rank on the human average; each cell shows the percentage score and its grade band. Post-seminar AI models are shown by their 10-run means.</p>
+</header>
+
+<section class="panel" aria-label="Interactive heatmap">
+<div class="controls">
+<label>Order <select id="sort"><option value="human">Human average (low → high)</option><option value="role">AI role, then human average</option></select></label>
+<label>Show <select id="filter"><option value="all">All groups (36)</option><option value="S">AI Student groups (18)</option><option value="T">AI Tutor groups (18)</option></select></label>
+<label><input type="checkbox" id="nums" checked> Show scores</label>
+</div>
+<div class="legend">
+<span><span class="sw" style="background:var(--u)"></span>U (&lt;60%)</span>
+<span><span class="sw" style="background:var(--g3)"></span>Grade 3 (60–74%)</span>
+<span><span class="sw" style="background:var(--g4)"></span>Grade 4 (75–84%)</span>
+<span><span class="sw" style="background:var(--g5)"></span>Grade 5 (≥85%)</span>
+<span>S / T = AI Student / AI Tutor role · dark line = grade-band change in the human average</span>
+</div>
+<div class="scroll" id="wrap"><table class="hm" id="hm"></table></div>
+</section>
+
+<h2>Grade distribution by evaluator</h2>
+<div class="scroll"><table class="dist" id="dist"></table></div>
+<p class="note">Distribution for the groups currently shown. The human reference places 1 group at U, 10 at grade 3, 13 at grade 4 and 12 at grade 5; compare how each evaluator compresses or reproduces this distribution.</p>
+
+<footer>Part of the open materials for the 2026 implementation: <a href="https://doi.org/10.5281/zenodo.22964998">doi:10.5281/zenodo.22964998</a> · <a href="https://github.com/kaveheng/GenAi-in-education">github.com/kaveheng/GenAi-in-education</a>. No group identifiers or individual student data are included. Licensed CC BY 4.0.</footer>
+</main>
+<div id="tip" role="tooltip"></div>
+<script>
+const D={"evaluators": ["Teacher A", "Teacher B", "Student self-evaluation", "ChatGPT (in-session, GPT-4o)", "ChatGPT 5.5 (10-run mean)", "Claude Sonnet 5 (10-run mean)", "Gemini 3.5 (10-run mean)"], "short": ["Teacher A", "Teacher B", "Self", "GPT-4o (session)", "ChatGPT 5.5", "Claude Sonnet 5", "Gemini 3.5"], "scores": [[60, 60, 60, 60, 70, 75, 70, 75, 75, 70, 79, 75, 85, 75, 70, 80, 70, 75, 85, 90, 85, 75, 80, 85, 90, 90, 90, 90, 80, 90, 90, 90, 90, 95, 95, 95], [45, 65, 65, 67, 60, 65, 70, 65, 65, 75, 70, 75, 67, 80, 87, 80, 90, 85, 80, 75, 80, 90, 85, 83, 80, 80, 80, 80, 95, 85, 90, 90, 90, 85, 87, 90], [60, 50, 80, 65, 90, 80, 80, 70, 60, 80, 65, 80, 90, 70, 60, 80, 60, 75, 80, 90, 75, 85, 95, 70, 85, 85, 78, 75, 80, 74, 85, 75, 95, 75, 90, 85], [75, 82, 87, 66, 75, 75, 84, 82, 62, 85, 72, 84, 85, 84, 80, 84, 72, 84, 84, 82, 75, 82, 84, 84, 82, 87, 82, 84, 82, 82, 85, 82, 85, 88, 87, 84], [67, 81, 72, 77, 82, 84, 73, 79, 75, 81, 76, 78, 82, 83, 82, 79, 75, 81, 90, 85, 84, 82, 88, 90, 90, 89, 91, 87, 83, 84, 85, 87, 86, 89, 90, 91], [63, 69, 81, 59, 71, 69, 74, 84, 73, 86, 65, 67, 83, 88, 80, 76, 60, 76, 85, 88, 62, 80, 89, 72, 89, 85, 83, 84, 76, 79, 79, 89, 87, 89, 90, 88], [83, 86, 60, 70, 74, 78, 71, 68, 57, 58, 87, 75, 78, 72, 74, 86, 74, 83, 74, 67, 83, 86, 74, 86, 78, 72, 76, 82, 80, 71, 77, 49, 68, 85, 84, 74]], "roles": ["S", "T", "S", "T", "S", "T", "S", "S", "S", "S", "T", "T", "S", "S", "T", "S", "T", "S", "T", "S", "T", "T", "S", "T", "S", "T", "T", "T", "T", "T", "T", "S", "S", "S", "S", "T"]};
+const band=s=>s<60?0:s<75?1:s<85?2:3, BL=["U","3","4","5"], BC=["var(--u)","var(--g3)","var(--g4)","var(--g5)"];
+const G=D.roles.map((r,i)=>({rank:i+1,role:r,s:D.scores.map(row=>row[i]),h:(D.scores[0][i]+D.scores[1][i])/2}));
+const $=id=>document.getElementById(id), tip=$('tip');
+function render(){
+  const f=$('filter').value, o=$('sort').value;
+  let g=G.filter(x=>f==='all'||x.role===f);
+  if(o==='role') g=[...g].sort((a,b)=>a.role.localeCompare(b.role)||a.h-b.h);
+  const rows=[...D.evaluators.map((e,k)=>({name:D.short[k],full:e,k})),{name:'Human average',full:'Mean of Teacher A and B',k:-1}];
+  let h='<tr><th class="rh"></th>'+g.map(x=>`<td class="role" title="${x.role==='S'?'AI Student':'AI Tutor'} role">${x.role}</td>`).join('')+'</tr>';
+  for(const r of rows){
+    h+=`<tr class="${r.k<0?'human':''}"><th class="rh">${r.name}${r.k<0?'<small>reference</small>':''}</th>`;
+    g.forEach((x,j)=>{const v=r.k<0?x.h:x.s[r.k], b=band(v);
+      const bd=j>0&&band(g[j-1].h)!==band(x.h)&&o==='human'?' boundary':'';
+      h+=`<td class="${bd.trim()}" style="background:${BC[b]}" data-r="${r.k}" data-g="${x.rank}">${r.k<0?Math.round(v):v}</td>`});
+    h+='</tr>';
+  }
+  $('hm').innerHTML=h;
+  let t='<tr><th>Evaluator</th><th>U</th><th>3</th><th>4</th><th>5</th><th>Distribution</th></tr>';
+  for(const r of rows){const c=[0,0,0,0]; g.forEach(x=>c[band(r.k<0?x.h:x.s[r.k])]++);
+    t+=`<tr><td>${r.name}</td>${c.map(n=>`<td>${n}</td>`).join('')}<td><div class="bar">${c.map((n,i)=>n?`<span style="flex:${n};background:${BC[i]}"></span>`:'').join('')}</div></td></tr>`}
+  $('dist').innerHTML=t;
+}
+$('hm').addEventListener('mousemove',e=>{const td=e.target.closest('td[data-g]'); if(!td){tip.style.display='none';return}
+  const x=G[td.dataset.g-1], k=+td.dataset.r, v=k<0?x.h:x.s[k];
+  tip.innerHTML=`<b>Group rank ${x.rank} of 36</b> · ${x.role==='S'?'AI Student':'AI Tutor'} role<br>${k<0?'Human average':D.evaluators[k]}: <b>${k<0?v.toFixed(1):v}%</b> (grade ${BL[band(v)]})<br>Human average: ${x.h.toFixed(1)}% (grade ${BL[band(x.h)]})`+(k>=0?`<br>Difference: ${(v-x.h>=0?'+':'')}${(v-x.h).toFixed(1)} pp`:'');
+  tip.style.display='block'; const w=tip.offsetWidth; tip.style.left=Math.min(e.clientX+14,innerWidth-w-8)+'px'; tip.style.top=(e.clientY+14)+'px'});
+$('hm').addEventListener('mouseleave',()=>tip.style.display='none');
+['sort','filter'].forEach(id=>$(id).addEventListener('change',render));
+$('nums').addEventListener('change',e=>document.body.classList.toggle('hide-num',!e.target.checked));
+render();
+</script>
+</body>
+</html>
