@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Interactive Fig. 1 – Grade-band assignment by evaluator (IEEE TALE 2026)</title>
+<title>Interactive figures – Can AI Grade Dialogic Assessment? (IEEE TALE 2026)</title>
 <style>
 :root{--ink:#1d1f24;--muted:#5d6370;--rule:#d9dce2;--paper:#fbfaf7;--card:#ffffff;
 --u:#c62828;--g3:#ef8a17;--g4:#2e8b57;--g5:#1f4e9c;--hl:#1d1f24}
@@ -40,6 +40,22 @@ table.dist th:first-child,table.dist td:first-child{text-align:left}
 .note{color:var(--muted);font-size:13.5px;max-width:82ch}
 footer{margin-top:28px;color:var(--muted);font-size:13px;border-top:1px solid var(--rule);padding-top:12px}
 a{color:inherit}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:4px 0 16px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:12px 14px}
+.card .l{font:12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--muted)}
+.card .v{font-size:28px;font-weight:600;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.card .s{font:12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--muted)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+.two .panel h3{font:600 13px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0 0 8px;color:var(--ink)}
+svg text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--ink)}
+svg .ax{stroke:var(--rule)} svg .mut{fill:var(--muted)}
+.finds{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:14px}
+.find{border-left:4px solid var(--rule);background:var(--card);border-radius:0 8px 8px 0;padding:10px 12px;font-size:14px}
+.find b{display:block;font:600 13px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;margin-bottom:4px}
+table.rep{border-collapse:collapse;font:13px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;min-width:560px}
+table.rep th,table.rep td{padding:6px 10px;border-bottom:1px solid var(--rule);text-align:right}
+table.rep th:first-child,table.rep td:first-child{text-align:left}
+hr.sec{border:0;border-top:1px solid var(--rule);margin:36px 0 8px}
 </style>
 </head>
 <body>
@@ -69,6 +85,34 @@ a{color:inherit}
 <h2>Grade distribution by evaluator</h2>
 <div class="scroll"><table class="dist" id="dist"></table></div>
 <p class="note">Distribution for the groups currently shown. The human reference places 1 group at U, 10 at grade 3, 13 at grade 4 and 12 at grade 5; compare how each evaluator compresses or reproduces this distribution.</p>
+
+<hr class="sec">
+<header>
+<div class="kicker">Supplementary figure · Agreement overview</div>
+<h1>Agreement, score severity and reproducibility at a glance</h1>
+<p class="cite">Summary of Tables I–II in the paper. ICC(2,1), bias (evaluator − human average, percentage points), mean absolute deviation (MAD) and within-one-band share are as reported in Table I; 95% limits of agreement are computed from the Fig. 1 values. Post-seminar models are represented by their 10-run means.</p>
+</header>
+<div class="cards">
+<div class="card"><div class="l">Human inter-rater ICC</div><div class="v">.605</div><div class="s">Teacher A vs. B · MAD 7.9 pp</div></div>
+<div class="card"><div class="l">Highest AI agreement</div><div class="v">.635</div><div class="s">ChatGPT 5.5 · bias +4.0 pp</div></div>
+<div class="card"><div class="l">Near-zero bias</div><div class="v">−0.5</div><div class="s">Claude Sonnet 5 · ICC .573</div></div>
+<div class="card"><div class="l">Lowest agreement</div><div class="v">.073</div><div class="s">Gemini 3.5 · run-to-run SD 11.4 pp</div></div>
+</div>
+<div class="controls" style="margin-bottom:10px"><label>Groups <select id="roleSel"><option value="all">All (N = 36)</option><option value="T">AI Tutor (n = 18)</option><option value="S">AI Student (n = 18)</option></select></label><span class="note" id="roleNote" style="font-size:12.5px"></span></div>
+<div class="two">
+<section class="panel"><h3>Bias vs. human average (dot) with 95% limits of agreement (bar)</h3><div id="biasPlot"></div></section>
+<section class="panel"><h3>ICC(2,1) against the human average</h3><div id="iccPlot"></div></section>
+</div>
+<h2>Run-to-run reproducibility (10 independent runs)</h2>
+<div class="scroll"><table class="rep"><tr><th>Model</th><th>Mean within-group SD</th><th>Max SD</th><th>Groups changing grade band</th><th>Single-run ICC range</th></tr>
+<tr><td>ChatGPT 5.5</td><td>1.9 pp</td><td>3.6 pp</td><td>58%</td><td>.52 – .69</td></tr>
+<tr><td>Claude Sonnet 5</td><td>3.4 pp</td><td>10.9 pp</td><td>67%</td><td>.36 – .59</td></tr>
+<tr><td>Gemini 3.5</td><td>11.4 pp</td><td>27.7 pp</td><td>100%</td><td>−.22 – .21</td></tr></table></div>
+<div class="finds">
+<div class="find" style="border-color:var(--g5)"><b>ChatGPT 5.5: closest, but lenient</b>Highest agreement with the human average, all groups within one grade band, but scores +4.0 pp higher on average and eight of ten human grade-3 groups were lifted to grade 4.</div>
+<div class="find" style="border-color:var(--g4)"><b>Claude Sonnet 5: unbiased on average</b>Near-zero mean bias and a grade distribution almost identical to the human one, with a role asymmetry: Tutor groups under-scored (−5.9 pp), Student groups over-scored (+5.0 pp).</div>
+<div class="find" style="border-color:var(--u)"><b>Gemini 3.5: not reliable here</b>Near-zero agreement, limits of agreement spanning about 50 pp and grade-band changes across runs for every group; averaging ten runs did not repair agreement.</div>
+</div>
 
 <footer>Part of the open materials for the 2026 implementation: <a href="https://doi.org/10.5281/zenodo.22964998">doi:10.5281/zenodo.22964998</a> · <a href="https://github.com/kaveheng/GenAi-in-education">github.com/kaveheng/GenAi-in-education</a>. No group identifiers or individual student data are included. Licensed CC BY 4.0.</footer>
 </main>
@@ -105,6 +149,45 @@ $('hm').addEventListener('mouseleave',()=>tip.style.display='none');
 ['sort','filter'].forEach(id=>$(id).addEventListener('change',render));
 $('nums').addEventListener('change',e=>document.body.classList.toggle('hide-num',!e.target.checked));
 render();
+</script>
+
+<script>
+const EV=[
+ {n:"Human (B − A)",c:"#6b7280",all:{b:-1.9,lo:-20.7,hi:16.9,icc:.605}},
+ {n:"Student self-eval.",c:"#7b4ea3",all:{b:-1.8,lo:-22.6,hi:19.1,icc:.463},T:{b:-6.4,icc:.521},S:{b:2.9,icc:.472}},
+ {n:"GPT-4o (session)",c:"#5b8fd6",all:{b:2.3,lo:-14.7,hi:19.4,icc:.402},T:{icc:.562},S:{icc:.343}},
+ {n:"ChatGPT 5.5",c:"#1f4e9c",all:{b:4.0,lo:-8.2,hi:16.1,icc:.635},T:{b:3.4,icc:.504},S:{b:4.6,icc:.709}},
+ {n:"Claude Sonnet 5",c:"#2e8b57",all:{b:-0.5,lo:-17.8,hi:16.8,icc:.573},T:{b:-5.9,icc:.546},S:{b:5.0,icc:.670}},
+ {n:"Gemini 3.5",c:"#c62828",all:{b:-3.8,lo:-28.6,hi:21.1,icc:.073},T:{b:-2.3,icc:-.133},S:{b:-5.2,icc:.077}}];
+function svgEl(w,h,inner){return `<svg viewBox="0 0 ${w} ${h}" width="100%" role="img">${inner}</svg>`}
+function drawBias(role){
+  const W=520,rowH=34,top=14,L=132,R=16,H=top+EV.length*rowH+34, x0=-32,x1=26, sx=v=>L+(v-x0)/(x1-x0)*(W-L-R);
+  let g='';
+  for(let t=-30;t<=25;t+=10){g+=`<line class="ax" x1="${sx(t)}" x2="${sx(t)}" y1="${top-4}" y2="${H-30}" stroke-width="${t===0?1.4:.6}"/><text class="mut" x="${sx(t)}" y="${H-14}" font-size="11" text-anchor="middle">${t>0?'+':''}${t}</text>`}
+  EV.forEach((e,i)=>{const y=top+i*rowH+rowH/2, d=role==='all'?e.all:e[role];
+    g+=`<text x="${L-8}" y="${y+4}" font-size="12" text-anchor="end">${e.n}</text>`;
+    if(!d||d.b===undefined){g+=`<text class="mut" x="${sx(0)+6}" y="${y+4}" font-size="11">not reported by role</text>`;return}
+    if(role==='all') g+=`<line x1="${sx(d.lo)}" x2="${sx(d.hi)}" y1="${y}" y2="${y}" stroke="${e.c}" stroke-opacity=".35" stroke-width="10" stroke-linecap="round"><title>LoA ${d.lo} to ${d.hi} pp</title></line>`;
+    g+=`<circle cx="${sx(d.b)}" cy="${y}" r="6" fill="${e.c}"><title>${e.n}: bias ${d.b>0?'+':''}${d.b} pp${role==='all'?` · LoA [${d.lo}, ${d.hi}]`:''}</title></circle><text x="${sx(d.b)+(d.b>=0?10:-10)}" y="${y-9}" font-size="11" text-anchor="${d.b>=0?'start':'end'}">${d.b>0?'+':''}${d.b.toFixed(1)}</text>`});
+  g+=`<text class="mut" x="${(L+W-R)/2}" y="${H-1}" font-size="11" text-anchor="middle">percentage points (evaluator − human average)</text>`;
+  document.getElementById('biasPlot').innerHTML=svgEl(W,H,g);
+}
+function drawICC(role){
+  const W=520,rowH=34,top=14,L=132,R=40,H=top+EV.length*rowH+34, x0=-.2,x1=.8, sx=v=>L+(v-x0)/(x1-x0)*(W-L-R);
+  let g='';
+  for(let t=-.2;t<=.81;t+=.2){const tt=Math.round(t*10)/10;g+=`<line class="ax" x1="${sx(tt)}" x2="${sx(tt)}" y1="${top-4}" y2="${H-30}" stroke-width="${tt===0?1.4:.6}"/><text class="mut" x="${sx(tt)}" y="${H-14}" font-size="11" text-anchor="middle">${tt.toFixed(1)}</text>`}
+  g+=`<line x1="${sx(.605)}" x2="${sx(.605)}" y1="${top-6}" y2="${H-30}" stroke="#6b7280" stroke-dasharray="4 3"/><text class="mut" x="${sx(.605)+4}" y="${top+2}" font-size="10">human .605</text>`;
+  EV.forEach((e,i)=>{const y=top+i*rowH+rowH/2, d=role==='all'?e.all:e[role];
+    g+=`<text x="${L-8}" y="${y+4}" font-size="12" text-anchor="end">${e.n}</text>`;
+    if(!d||d.icc===undefined){g+=`<text class="mut" x="${sx(0)+6}" y="${y+4}" font-size="11">not reported by role</text>`;return}
+    const a=Math.min(sx(0),sx(d.icc)), w=Math.abs(sx(d.icc)-sx(0));
+    g+=`<rect x="${a}" y="${y-9}" width="${w}" height="18" rx="3" fill="${e.c}" fill-opacity="${i===0?.45:.85}"><title>${e.n}: ICC ${d.icc.toFixed(3)}</title></rect><text x="${sx(d.icc)+(d.icc>=0?6:-6)}" y="${y+4}" font-size="11" text-anchor="${d.icc>=0?'start':'end'}">${d.icc.toFixed(3).replace('0.','.')}</text>`});
+  g+=`<text class="mut" x="${(L+W-R)/2}" y="${H-1}" font-size="11" text-anchor="middle">absolute agreement with the human average</text>`;
+  document.getElementById('iccPlot').innerHTML=svgEl(W,H,g);
+}
+function drawAgree(){const r=document.getElementById('roleSel').value;drawBias(r);drawICC(r);
+  document.getElementById('roleNote').textContent=r==='all'?'Human row: agreement between Teacher A and B.':'Role-specific estimates (n = 18 per role) are imprecise and exploratory; limits of agreement are shown for all groups only.'}
+document.getElementById('roleSel').addEventListener('change',drawAgree); drawAgree();
 </script>
 </body>
 </html>
